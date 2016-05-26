@@ -11,4 +11,9 @@ class Restaurant < ActiveRecord::Base
   def created_by?(current_user)
     user == current_user
   end
+
+  def average_rating
+    return 'N/A' if reviews.none?
+    reviews.inject(0.0) { |sum, review| sum + review.rating } / reviews.size
+  end
 end

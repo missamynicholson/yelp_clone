@@ -1,6 +1,7 @@
 <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
     <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+    <h3>Average rating: <%= star_rating(restaurant.average_rating) %></h3>
     <p><%= restaurant.description %></p>
     <%= image_tag restaurant.image.url(:thumb) %>
     <% if restaurant.created_by?(current_user) %>

@@ -2,8 +2,9 @@ Reviews for <%= @restaurant.name %>
 <% @restaurant.reviews.each do |review| %>
     <p>Review: <%= review.thoughts %> </p>
     <p>Rating: <%= review.rating %> </p>
+    <p><%= pluralize review.endorsements.count, 'endorsement' %></p>
     <% if review.authored_by?(current_user) %>
       <%= link_to "Delete #{review.thoughts}",  review_path(review), method: :delete %>
-      <%= link_to "Endorse Review",  review_endorsements_path(review) %>
+      <%= link_to "Endorse Review",  review_endorsements_path(review), method: :post %>
     <% end %>
 <% end %>

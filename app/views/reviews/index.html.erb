@@ -1,10 +1,14 @@
 Reviews for <%= @restaurant.name %>
-<% @restaurant.reviews.each do |review| %>
-    <p>Review: <%= review.thoughts %> </p>
-    <p>Rating: <%= review.rating %> </p>
-    <p><%= pluralize review.endorsements.count, 'endorsement' %></p>
-    <% if review.authored_by?(current_user) %>
-      <%= link_to "Delete #{review.thoughts}",  review_path(review), method: :delete %>
-      <%= link_to "Endorse Review",  review_endorsements_path(review), method: :post %>
-    <% end %>
-<% end %>
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li>
+      <p>Review: <%= review.thoughts %> </p>
+      <p>Rating: <%= review.rating %> </p>
+     <span class="endorsements_count"> <%= review.endorsements.count %> </span> <%= "endorsement".pluralize(review.endorsements.count) %>
+      <% if review.authored_by?(current_user) %>
+        <%= link_to "Delete #{review.thoughts}",  review_path(review), method: :delete %>
+      <% end %>
+      <%= link_to "Endorse Review",  review_endorsements_path(review), method: :post, class: "endorsements-link" %>
+    </li>
+  <% end %>
+</ul>

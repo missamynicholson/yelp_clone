@@ -1,3 +1,8 @@
-# RSpec.describe Endorsement, type: :model do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end
+describe Endorsement, type: :model do
+
+  describe "endorsements" do
+    it "has correct association with review" do
+      should belong_to :review
+    end
+  end
+end

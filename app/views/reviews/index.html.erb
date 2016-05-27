@@ -3,6 +3,7 @@ Reviews for <%= @restaurant.name %>
     <p>Review: <%= review.thoughts %> </p>
     <p>Rating: <%= review.rating %> </p>
     <% if review.authored_by?(current_user) %>
-      <%= link_to "Delete #{review.thoughts}",  restaurant_review_path(@restaurant, review), method: :delete %>
+      <%= link_to "Delete #{review.thoughts}",  review_path(review), method: :delete %>
+      <%= link_to "Endorse Review",  review_endorsements_path(review) %>
     <% end %>
 <% end %>
